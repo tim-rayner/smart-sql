@@ -7,9 +7,6 @@ const configuration = new Configuration({
 const openai = new OpenAIApi(configuration);
 
 export const requestSQL = async (prompt: string) => {
-  console.log("apiKey", import.meta.env.VITE_SOME_KEY);
-  console.log("gpt", import.meta.env.VITE_GPT_KEY);
-
   try {
     const response = await openai.createCompletion({
       model: "text-davinci-003",
