@@ -1,11 +1,15 @@
 import { Configuration, OpenAIApi } from "openai";
 
 const configuration = new Configuration({
-  apiKey: "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",
+  apiKey: import.meta.env.VITE_GPT_KEY,
 });
+
 const openai = new OpenAIApi(configuration);
 
 export const requestSQL = async (prompt: string) => {
+  console.log("apiKey", import.meta.env.VITE_SOME_KEY);
+  console.log("gpt", import.meta.env.VITE_GPT_KEY);
+
   try {
     const response = await openai.createCompletion({
       model: "text-davinci-003",
