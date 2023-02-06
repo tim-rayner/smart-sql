@@ -52,9 +52,9 @@
 import { ref, onMounted, computed, reactive } from "vue";
 import openai from "openai";
 import { requestSQL } from "@/api/gpt.api";
-import { useTableStore } from "@/stores/table-store";
+import { useTablesStore } from "@/stores/table-store";
 
-const { tables, addTable, removeTable, removeAllTables } = useTableStore();
+const { tables, addTable, removeTable, removeAllTables } = useTablesStore();
 interface message {
   type: string;
   body: any;
@@ -155,7 +155,6 @@ Body
 Chat
 --------------------*/
 .chat {
-  @include center;
   width: 500px;
   height: 90vh;
   max-height: 500px;

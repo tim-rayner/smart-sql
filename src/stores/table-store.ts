@@ -1,15 +1,34 @@
-import { ref, computed } from "vue";
 import { defineStore } from "pinia";
+import type { Table } from "@/types/table-types";
 
-export const useTableStore = defineStore("table", () => {
-  const tables = ref([]);
-  //@ts-ignore
-  const addTable = (table: any) => tables.value.push(table);
-  const removeTable = (
-    tableId: number //@ts-ignore
-  ) => (tables.value = tables.value.filter((table) => table?.id !== tableId));
-  const removeAllTables = () => {
-    tables.value = [];
-  };
-  return { tables, addTable, removeTable, removeAllTables };
+export const useTablesStore = defineStore("tableStore", {
+  /**
+   * STATE
+   * @docs https://pinia.vuejs.org/core-concepts/state.html
+   */
+  state: () => ({
+    tables: [] as Array<Table>,
+  }),
+
+  /**
+   * GETTERS
+   * @docs https://pinia.vuejs.org/core-concepts/getters.html
+   */
+  getters: {},
+
+  /**
+   * ACTIONS
+   * @docs https://pinia.vuejs.org/core-concepts/actions.html
+   */
+  actions: {
+    addTable(table: Table) {
+      this.tables.push(table);
+    },
+    removeTable(tableId: number) {
+      this.tables = this.tables.filter((table) => table?.id !== tableId);
+    },
+    removeAllTables() {
+      this.tables = [];
+    },
+  },
 });
