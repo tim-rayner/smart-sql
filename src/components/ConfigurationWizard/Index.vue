@@ -13,14 +13,14 @@
       <BrandButton @click="addTableToStore">Add</BrandButton>
     </div>
     <h3></h3> -->
-    <TableForm v-if="!tables.length" />
+    <TableForm />
     <br />
-    <BrandButton> Add Table </BrandButton>
+
     <h4>Tables:</h4>
     <ul>
-      <li v-for="table in tables">
-        <Table />
-      </li>
+      <div v-for="table in tables">
+        <Table :table="table" />
+      </div>
     </ul>
     <button @click="tablesStore.removeAllTables">Remove all tables</button>
   </div>
@@ -29,10 +29,7 @@
 </template>
 
 <script setup lang="ts" scoped>
-import { reactive } from "vue";
-import BrandButton from "../input/BrandButton.vue";
 import Table from "./components/Table.vue";
-import type { Table as TableType } from "@/types/Table";
 // Store
 import { useTablesStore } from "@/stores/table-store";
 import { storeToRefs } from "pinia";
@@ -40,29 +37,6 @@ import TableForm from "./components/TableForm.vue";
 
 const tablesStore = useTablesStore();
 const { tables } = storeToRefs(tablesStore);
-
-//TODO: Porter over to table form
-const emptyTable: TableType = {
-  id: 0,
-  name: "",
-  description: "",
-  columns: [],
-};
-
-const data = reactive({
-  tableInput: "",
-  newTable: {
-    ...(emptyTable as TableType),
-  },
-});
-
-const addTableToStore = () => {
-  console.log("data.tableInput", data.tableInput);
-  if (data.tableInput.length) {
-    tablesStore.addTable(data.newTable);
-    data.tableInput = "";
-  }
-};
 </script>
 
 <style lang="scss"></style>

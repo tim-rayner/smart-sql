@@ -83,7 +83,9 @@ const reply = async (message: string) => {
 
     //make api request
     const response = await requestSQL(
-      `using the tables: ${tables.toString()}, create an SQL request: ${message}`
+      `using the tables found below as JSON: ${JSON.stringify(
+        tables
+      )}, ${message}, as a SQL query`
     );
 
     console.log(response);

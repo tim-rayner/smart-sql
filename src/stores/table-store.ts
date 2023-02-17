@@ -22,6 +22,8 @@ export const useTablesStore = defineStore("tableStore", {
    */
   actions: {
     addTable(table: Table) {
+      console.log("table", table);
+      table.columns = table.columns.filter((column) => column.name !== "");
       this.tables.push(table);
     },
     removeTable(tableId: number) {

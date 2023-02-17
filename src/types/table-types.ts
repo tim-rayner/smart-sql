@@ -1,5 +1,5 @@
 export type Table = {
-  id: number;
+  id?: number;
   name: string;
   description?: string;
   columns: Column[];
@@ -7,9 +7,10 @@ export type Table = {
 
 //column type
 export type Column = {
-  id: number;
+  id?: number;
   name: string;
-  type: string;
+  type?: string;
+  isEditing: boolean;
   description?: string;
   isNullable?: boolean;
   isPrimaryKey?: boolean;
