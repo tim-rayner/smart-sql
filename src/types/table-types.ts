@@ -10,7 +10,6 @@ export type Column = {
   id?: number;
   name: string;
   type?: string;
-  isEditing: boolean;
   description?: string;
   isNullable?: boolean;
   isPrimaryKey?: boolean;
